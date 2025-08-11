@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Spring Boot App</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h1 { color: #2c3e50; }
+        .endpoint { background: #ecf0f1; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        a { color: #3498db; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1> My First Spring Boot App</h1>
+    <p>Welcome web app!</p>
+
+    <h2> Available Endpoints:</h2>
+    <div class="endpoint">
+        <strong>Hello World:</strong> <a href="/hello">/hello</a>
+    </div>
+    <div class="endpoint">
+        <strong>Personal Greeting:</strong> <a href="/greet/YourName">/greet/YourName</a>
+    </div>
+    <div class="endpoint">
+        <strong>Welcome with Parameters:</strong> <a href="/welcome?name=Alice&visits=5">/welcome?name=Alice&visits=5</a>
+    </div>
+    <div class="endpoint">
+        <strong>JSON API - All Users:</strong> <a href="/api/users">/api/users</a>
+    </div>
+    <div class="endpoint">
+        <strong>About Page:</strong> <a href="/about">/about</a>
+    </div>
+
+    <h2> What I've Built:</h2>
+    <ul>
+        <li> REST API endpoints</li>
+        <li> Dynamic URLs with path variables</li>
+        <li> Query parameters</li>
+        <li> JSON responses</li>
+        <li> HTML templates</li>
+    </ul>
+</div>
+</body>
+</html>
