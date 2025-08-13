@@ -1,5 +1,4 @@
 package com.example.my_first_springboot_app.controller;
-
 import com.example.my_first_springboot_app.model.User;
 import com.example.my_first_springboot_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
