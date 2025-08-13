@@ -11,10 +11,10 @@ public class UserService {
     private final AtomicLong idGenerator = new AtomicLong(1);
 
     public UserService() {
-        // Initialize with sample data
-        createSampleUser("Alice Johnson", "alice@example.com", 28);
-        createSampleUser("Bob Smith", "bob@example.com", 35);
-        createSampleUser("Carol Davis", "carol@example.com", 42);
+
+        createSampleUser("Mkipleting", "mkipleting@gmail.com", 28);
+        createSampleUser("Mkosgei", "mkosgei@gmail.com", 35);
+        createSampleUser("M.Chumba", "chumba@gmail.com", 42);
     }
 
     private void createSampleUser(String name, String email, int age) {
