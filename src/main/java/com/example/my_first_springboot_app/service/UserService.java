@@ -4,7 +4,6 @@ import com.example.my_first_springboot_app.model.User;
 import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -13,19 +12,20 @@ public class UserService {
 
     public UserService() {
         // Initialize with sample data
-        createUser(new User("Alice Johnson", "alice@example.com", 28));
-        createUser(new User("Bob Smith", "bob@example.com", 35));
-        createUser(new User("Carol Davis", "carol@example.com", 42));
+        createSampleUser("Alice Johnson", "alice@example.com", 28);
+        createSampleUser("Bob Smith", "bob@example.com", 35);
+        createSampleUser("Carol Davis", "carol@example.com", 42);
+    }
+
+    private void createSampleUser(String name, String email, int age) {
+        User user = new User(name, email, age);
+        Long id = idGenerator.getAndIncrement();
+        user.setId(id);
+        users.put(id, user);
     }
 
     public List<User> getAllUsers() {
         return new ArrayList<>(users.values());
-    }
-
-    public List<User> getActiveUsers() {
-        return users.values().stream()
-                .filter(User::isActive)
-                .collect(Collectors.toList());
     }
 
     public Optional<User> getUserById(Long id) {
@@ -36,12 +36,6 @@ public class UserService {
         return users.values().stream()
                 .filter(user -> user.getEmail().equalsIgnoreCase(email))
                 .findFirst();
-    }
-
-    public List<User> getUsersByAgeRange(int minAge, int maxAge) {
-        return users.values().stream()
-                .filter(user -> user.getAge() >= minAge && user.getAge() <= maxAge)
-                .collect(Collectors.toList());
     }
 
     public User createUser(User user) {
@@ -61,12 +55,6 @@ public class UserService {
             throw new IllegalArgumentException("User with ID " + id + " not found");
         }
 
-        // Check if email is being changed and if new email already exists
-        if (!existingUser.getEmail().equals(updatedUser.getEmail()) &&
-                getUserByEmail(updatedUser.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("Email " + updatedUser.getEmail() + " is already in use");
-        }
-
         existingUser.setName(updatedUser.getName());
         existingUser.setEmail(updatedUser.getEmail());
         existingUser.setAge(updatedUser.getAge());
@@ -76,24 +64,6 @@ public class UserService {
 
     public boolean deleteUser(Long id) {
         return users.remove(id) != null;
-    }
-
-    public boolean deactivateUser(Long id) {
-        User user = users.get(id);
-        if (user != null) {
-            user.deactivate();
-            return true;
-        }
-        return false;
-    }
-
-    public boolean activateUser(Long id) {
-        User user = users.get(id);
-        if (user != null) {
-            user.activate();
-            return true;
-        }
-        return false;
     }
 
     public long getUserCount() {
@@ -120,6 +90,6 @@ public class UserService {
                 .filter(user ->
                         user.getName().toLowerCase().contains(term) ||
                                 user.getEmail().toLowerCase().contains(term))
-                .collect(Collectors.toList());
+                .collect(java.util.stream.Collectors.toList());
     }
 }

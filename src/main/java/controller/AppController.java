@@ -1,15 +1,13 @@
 package com.example.my_first_springboot_app.controller;
+
 import com.example.my_first_springboot_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.util.Map;
-import java.util.HashMap;
 
 @Controller
-
 public class AppController {
+
     @Autowired
     private UserService userService;
 
@@ -68,4 +66,3 @@ public class AppController {
         );
     }
 }
-
